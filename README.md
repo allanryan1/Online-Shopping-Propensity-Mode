@@ -16,7 +16,6 @@ If a marketing team can only follow up with or retarget a limited share of visit
 2.  **Exploration:** compared conversion rates by visitor type and month.
 3.  **Modeling:** trained logistic regression and random forest classifiers using a stratified 80/20 train/test split and 5-fold cross-validation. Class weights handle the imbalance, since only a minority of sessions convert.
 4.  **Evaluation:** ROC AUC, precision-recall AUC, and a confusion matrix. Accuracy alone is misleading here because most sessions do not convert.
-5.  **Marketing application:** a cumulative gains analysis showing how many buyers a team would reach by targeting only the highest-scoring sessions.
 
 ## Results
 
