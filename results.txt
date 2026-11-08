@@ -1,0 +1,59 @@
+Loaded 12,330 sessions, 18 columns
+Missing values: 0
+Duplicate rows: 125 (dropping them)
+Overall conversion rate: 15.6%
+
+Conversion rate by visitor type:
+VisitorType
+Returning_Visitor    14.1%
+Other                19.8%
+New_Visitor          24.9%
+
+Baseline: always predicting 'no purchase' is 84.4% accurate but finds 0% of buyers, so ROC AUC and recall matter more than accuracy here.
+
+=== Logistic Regression ===
+5-fold CV ROC AUC (train): 0.899 +/- 0.012
+Test ROC AUC:              0.910
+Test PR AUC:               0.663
+Confusion matrix [[TN FP] [FN TP]]:
+[[1764  295]
+ [  78  304]]
+              precision    recall  f1-score   support
+
+ No purchase       0.96      0.86      0.90      2059
+    Purchase       0.51      0.80      0.62       382
+
+    accuracy                           0.85      2441
+   macro avg       0.73      0.83      0.76      2441
+weighted avg       0.89      0.85      0.86      2441
+
+=== Random Forest ===
+5-fold CV ROC AUC (train): 0.929 +/- 0.004
+Test ROC AUC:              0.930
+Test PR AUC:               0.732
+Confusion matrix [[TN FP] [FN TP]]:
+[[1902  157]
+ [ 100  282]]
+              precision    recall  f1-score   support
+
+ No purchase       0.95      0.92      0.94      2059
+    Purchase       0.64      0.74      0.69       382
+
+    accuracy                           0.89      2441
+   macro avg       0.80      0.83      0.81      2441
+weighted avg       0.90      0.89      0.90      2441
+
+Best model on test ROC AUC: Random Forest
+
+Top 8 features (Random Forest importance):
+PageValues                 0.406
+ExitRates                  0.093
+ProductRelated_Duration    0.080
+ProductRelated             0.061
+BounceRates                0.048
+Administrative_Duration    0.045
+Administrative             0.036
+Month_Nov                  0.031
+
+Marketing view: if we only targeted the top 20% of sessions by score,
+we would reach 77% of all buyers (vs. 20% with random targeting, a 3.9x lift).
